@@ -11,7 +11,7 @@ class TitanicReaderTest {
     @Test
     void getNumPassengers() {
         TitanicReader titanic = new TitanicReader(new File("src/test/test_data/titanic.csv"));
-        assertEquals(892, titanic.getNumPassengers());
+        assertEquals(891, titanic.getNumPassengers());
     }
 
     @Test
