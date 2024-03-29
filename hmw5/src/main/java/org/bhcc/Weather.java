@@ -3,9 +3,14 @@ package org.bhcc;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Objects;
-
+import java.io.IOException;
+import java.sql.*;
 public class Weather implements Serializable {
 
     public double precipitation, temp_max, temp_min,wind;
@@ -17,24 +22,34 @@ public class Weather implements Serializable {
     /**
      * Constructor
      */
-    public Weather(String date) throws IOException {
+    public Weather(String date) throws IOException, ClassNotFoundException, SQLException {
+        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
+//        // to see how IntelliJ IDEA suggests fixing it.
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
-        File file = new File("src/main/resources/seattle-weather.csv");
-        TextReader reader = new TextReader(file);
-        ArrayList<String> lines = reader.getContent();
-        for (String line : lines) {
+        //  Create connect string
+        String connectUrl = "jdbc:mysql://localhost/sample";
 
-            if(Objects.equals(date, line.substring(0, 10))){
-            System.out.println(line);
-                String[] lineArr = line.split(",");
-                this.precipitation = Double.parseDouble(lineArr[1]);
-                this.temp_max = Double.parseDouble(lineArr[2]);
-                this.temp_min = Double.parseDouble(lineArr[3]);
-                this.wind = Double.parseDouble(lineArr[4]);
-                this.weather = lineArr[5];
+        //  Create JDBC Connection
+        Connection connection = DriverManager.getConnection(connectUrl, "user", "password");
 
-            }
+        //  Create the SQL Statement
+        Statement statement = connection.createStatement();
+
+
+        //  To query for data, use executeQuery()
+        ResultSet resultSet = statement.executeQuery("select * from weather WHERE DATE = \"" +date+"\"");
+
+        while (resultSet.next()) {
+            this.precipitation = resultSet.getDouble("precipitation");
+            this.temp_max = resultSet.getDouble("temp_max");
+            this.temp_min = resultSet.getDouble("temp_min");
+            this.wind = resultSet.getDouble("wind");
+            this.weather = resultSet.getString("weather");
         }
+        System.out.println("found one for "+this.weather);
+        //  Clean up
+        connection.close();
     }
 
     /**
