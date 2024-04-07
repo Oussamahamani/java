@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        System.out.println("Hello world!");
+        System.out.println("Hello world!"+(int) Math.floor(Math.random() *10  ) );
         File file = new File("stocks");
 
         Stock stock = new Stock("AAPL", 170.12,-4.98,"2.84%");

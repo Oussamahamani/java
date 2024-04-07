@@ -12,26 +12,12 @@ public class Weather implements Serializable {
     public double precipitation, temp_max, temp_min,wind;
     public String weather;
 
-    public double getPrecipitation() {
-        return precipitation;
-    }
 
-    public double getTemp_max() {
-        return temp_max;
-    }
 
-    public double getTemp_min() {
-        return temp_min;
-    }
 
-    public double getWind() {
-        return wind;
-    }
-
-    public String getWeather() {
-        return weather;
-    }
-
+    /**
+     * Constructor
+     */
     public Weather(String date) throws IOException {
 
         File file = new File("src/main/resources/seattle-weather.csv");
@@ -52,5 +38,38 @@ public class Weather implements Serializable {
         }
     }
 
+    /**
+     * @return weather precipitation
+     */
+    public double getPrecipitation() {
+        return precipitation;
+    }
 
+    /**
+     * @return weather max temperature
+     */
+    public double getTemp_max() {
+        return temp_max;
+    }
+
+    /**
+     * @return weather minimum temperature
+     */
+    public double getTemp_min() {
+        return temp_min;
+    }
+
+    /**
+     * @return weather wind for the day
+     */
+    public double getWind() {
+        return wind;
+    }
+
+    /**
+     * @return the weather of the day
+     */
+    public String getWeather() {
+        return weather;
+    }
 }

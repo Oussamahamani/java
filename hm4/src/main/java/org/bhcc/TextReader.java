@@ -7,12 +7,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Read Text from File.
+ * reads from a file 
  */
 public class TextReader {
     private final File file;
     private final ArrayList<String> lines = new ArrayList<>();
 
+    /**
+     * Constructor
+     */
     public TextReader(File file) throws IOException {
         this.file = file;
 
@@ -38,15 +41,4 @@ public class TextReader {
         return lines;
     }
 
-    /**
-     * Main Runner.
-     */
-//    public static void main(String[] args) throws IOException {
-//        File file = new File("text.txt");
-//        TextReader reader = new TextReader(file);
-//        ArrayList<String> lines = reader.getContent();
-//        for (String line : lines) {
-//            System.out.println(line);
-//        }
-//    }
 }

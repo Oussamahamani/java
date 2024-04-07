@@ -1,2 +1,8 @@
-package org.bhcc;public class handleServer {
+package org.bhcc;
+
+public class handleServer implements Runnable{
+    @Override
+    public void run() {
+
+    }
 }

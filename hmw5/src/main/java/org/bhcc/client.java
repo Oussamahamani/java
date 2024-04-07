@@ -6,6 +6,12 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 
 public class client {
+    /**
+     * makes a request to a server, sends a date and receive a weather object
+     * @param args date
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Socket socket = new Socket("localhost", 8000);
 
@@ -13,8 +19,8 @@ public class client {
         String date =   args[0];
         DataOutputStream toServer = new DataOutputStream(socket.getOutputStream());
         ObjectInputStream fromServer = new ObjectInputStream(socket.getInputStream());
-
         System.out.println("Date:  " + date);
+
         toServer.writeUTF(date);
         toServer.flush();
         Weather day = (Weather) fromServer.readObject();
