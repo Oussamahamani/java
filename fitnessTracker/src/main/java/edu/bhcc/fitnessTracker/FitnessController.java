@@ -21,19 +21,18 @@ public class FitnessController {
 
     @GetMapping("/")
     public String index(Model model){
-        List<Fitness> track_list = getAllTracks();
-        model.addAttribute("track_list",track_list);
+        TrackListWithTotal tracks = new TrackListWithTotal(getAllTracks());
+        model.addAttribute("tracks",tracks);
         return "index";
     }
 
     @GetMapping("/add_track")
     public String addTodo(String route, String date, double miles,Model model) {
         Fitness track = new Fitness(route,date,miles);
-        System.out.println(track);
         repo.save(track);
-        List<Fitness> track_list = getAllTracks();
+        TrackListWithTotal tracks = new TrackListWithTotal(getAllTracks());
 //        model.addAttribute("toast", "New todo added:  " + text + ".");
-        model.addAttribute("track_list", track_list);
+        model.addAttribute("tracks",tracks);
         return "index";
     }
     private List<Fitness> getAllTracks() {

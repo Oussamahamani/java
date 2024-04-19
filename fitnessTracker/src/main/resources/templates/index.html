@@ -36,11 +36,13 @@
     </div>
   </form>
 
-<!--  <div class="mt-2 mb-2">-->
-<!--    <b>You currently have <span th:text="${#lists.size(track_list)}"/> running records.</b>-->
-<!--  </div>-->
   <div class="mt-2 mb-2">
-    <!-- <b>Total mileage: <span th:text="${#lists.size(track_list)}"/> <span class="badge text-bg-primary">0.0</span>  </b> -->
+    <b>You currently have <span th:text="${#lists.size(tracks.getList())}"/> running records.</b>
+  </div>
+  <div class="mt-2 mb-2">
+    <b>You currently have <span class="badge text-bg-primary" th:text="${tracks.total}"/></b>
+
+    <!--     <b>Total mileage: <span class="badge text-bg-primary" th:text="${#tracks.getTotal()}"/>   </b>-->
   </div>
   <table class="table table-striped w-75">
     <tr>
@@ -49,7 +51,7 @@
       <th>Date</th>
       <th>Actions</th>
     </tr>
-    <tr th:each="track: ${track_list}">
+    <tr th:each="track: ${tracks.getList()}">
       <td th:text="${track.getRoute()}" />
       <td th:text="${track.getMiles()}" />
       <td th:text="${track.getDate()}" />
