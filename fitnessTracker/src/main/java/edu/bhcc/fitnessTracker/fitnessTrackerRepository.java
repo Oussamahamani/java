@@ -8,5 +8,5 @@ public interface fitnessTrackerRepository extends CrudRepository<Fitness,Long> {
 
     Fitness findById(long id);
 
-    List<Fitness> findByProject(String project);
+//    List<Fitness> findByProject(String project);
 }

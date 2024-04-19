@@ -13,7 +13,6 @@ public class Fitness {
     private String route;
     private String date;
     private double miles;
-    private String project;
 
     /**
      * Protected Constructor, used by JPA..
@@ -26,11 +25,10 @@ public class Fitness {
     /**
      * Public Constructor, used to create new Objects.
      */
-    public Fitness(String route, String date, double miles,String project) {
+    public Fitness(String route, String date, double miles) {
         this.route = route;
         this.date = date;
         this.miles = miles;
-        this.project = project;
     }
 
     public void setId(Long id) {
@@ -61,13 +59,7 @@ public class Fitness {
         this.miles = miles;
     }
 
-    public String getProject() {
-        return project;
-    }
 
-    public void setProject(String project) {
-        this.project = project;
-    }
     @Override
     public String toString() {
         return String.format(
