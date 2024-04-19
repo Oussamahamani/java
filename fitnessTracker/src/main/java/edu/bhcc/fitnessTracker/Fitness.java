@@ -9,7 +9,7 @@ public class Fitness {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    public Long id;
     private String route;
     private String date;
     private double miles;
@@ -29,6 +29,10 @@ public class Fitness {
         this.route = route;
         this.date = date;
         this.miles = miles;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {

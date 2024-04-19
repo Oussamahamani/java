@@ -31,8 +31,23 @@ public class FitnessController {
         Fitness track = new Fitness(route,date,miles);
         repo.save(track);
         TrackListWithTotal tracks = new TrackListWithTotal(getAllTracks());
-//        model.addAttribute("toast", "New todo added:  " + text + ".");
+        model.addAttribute("toast", "New record added:  " + track.getRoute() + ".");
         model.addAttribute("tracks",tracks);
+        return "index";
+    }
+
+    @GetMapping("/delete_todo")
+    public String deleteTodo(Integer id, Model model) {
+        Fitness track = this.repo.findById(id);
+        if (track != null) {
+            model.addAttribute("toast", "Deleted Record:  " + track.getRoute() + ".");
+            this.repo.delete(track);
+        } else {
+            model.addAttribute("toast", "Could not Record: " + id + ".");
+        }
+
+        TrackListWithTotal tracks = new TrackListWithTotal(getAllTracks());
+        model.addAttribute("tracks", tracks);
         return "index";
     }
     private List<Fitness> getAllTracks() {
